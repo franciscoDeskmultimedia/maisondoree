@@ -2,7 +2,7 @@ import React from 'react'
 import { getPayload } from 'payload'
 import { notFound } from 'next/navigation'
 import configPromise from '@payload-config'
-import { BlockRenderer } from '@/components/BlockRenderer'
+import { PageClient } from '@/components/PageClient'
 
 interface PageProps {
   params: Promise<{
@@ -31,7 +31,7 @@ export default async function DynamicPage({ params }: PageProps) {
     }
 
     const page = pages.docs[0]
-    return <BlockRenderer blocks={page.layout as any} />
+    return <PageClient page={page} />
   } catch (err) {
     console.error(`Error fetching page for slug ${slug}:`, err)
     notFound()

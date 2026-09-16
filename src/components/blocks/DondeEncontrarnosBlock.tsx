@@ -43,9 +43,9 @@ export const DondeEncontrarnosBlock: React.FC<DondeEncontrarnosBlockProps> = ({
         {/* Decorative Rule */}
         <div className="w-full max-w-[560px] h-[1px] bg-white/40 mx-auto mt-6" />
 
-        {/* Locations Grid */}
-        <div className="mt-12 md:mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 md:gap-6 text-center">
-          {placeList.map((place, idx) => (
+        {/* Locations Grid / Próximamente */}
+        <div className="mt-12 md:mt-20 flex justify-center text-center">
+          {/* {placeList.map((place, idx) => (
             <div key={idx} className="flex flex-col items-center">
               <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-white font-normal mb-4">
                 {place.city}
@@ -61,7 +61,10 @@ export const DondeEncontrarnosBlock: React.FC<DondeEncontrarnosBlockProps> = ({
                 </p>
               )}
             </div>
-          ))}
+          ))} */}
+          <p className="donde__soon text-center font-display font-normal text-[clamp(24px,-11px+11vw,220px)] leading-none tracking-[0.01em] text-cream m-0 px-[50px] py-0 whitespace-nowrap">
+            PRÓXIMAMENTE
+          </p>
         </div>
       </div>
     </section>

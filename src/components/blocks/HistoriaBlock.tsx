@@ -2,26 +2,40 @@
 
 import React from 'react'
 import Image from 'next/image'
+import { getMediaUrl } from '@/lib/media'
 
 interface HistoriaBlockProps {
-  wordmarkImage?: string
+  wordmarkImage?: any
+  wordmarkImageUrl?: string
   scriptText?: string
   paragraph1?: string
   paragraph2?: string
   sinceText?: string
   signText?: string
-  mediaImage?: string
+  mediaImage?: any
+  mediaImageUrl?: string
 }
 
 export const HistoriaBlock: React.FC<HistoriaBlockProps> = ({
-  wordmarkImage = '/images/wordmark.png',
+  wordmarkImage,
+  wordmarkImageUrl = '/images/wordmark.png',
   scriptText = 'Ecuadorian & French cream licor',
   paragraph1 = 'En el año 2025, durante unas vacaciones en la costa ecuatoriana, compartí mi receta familiar de rompope manabita con unos amigos franceses, quienes insistieron en que más personas debían probarla. Inspirado por su motivación, decidí fundar la marca de licores crema de mayor calidad en el mercado ecuatoriano.',
   paragraph2 = 'Así nació Maison Dorée.\nUniendo una tradición familiar',
   sinceText = 'desde 1862.',
   signText = '- Douglas Pazmiño, Fundador.',
-  mediaImage = '/images/manabi.jpg',
+  mediaImage,
+  mediaImageUrl = '/images/manabi.jpg',
 }) => {
+  const resolvedWordmark =
+    getMediaUrl(wordmarkImage) ||
+    (typeof wordmarkImageUrl === 'string' && wordmarkImageUrl ? wordmarkImageUrl : '') ||
+    '/images/wordmark.png'
+
+  const resolvedMediaImage =
+    getMediaUrl(mediaImage) ||
+    (typeof mediaImageUrl === 'string' && mediaImageUrl ? mediaImageUrl : '') ||
+    '/images/manabi.jpg'
   return (
     <section
       id="historia"
@@ -51,7 +65,7 @@ export const HistoriaBlock: React.FC<HistoriaBlockProps> = ({
         <div className="md:col-span-7 lg:col-span-7 text-center md:pl-12">
           <div className="relative w-[200px] sm:w-[260px] md:w-[330px] h-16 sm:h-20 md:h-24 mx-auto mb-3">
             <Image
-              src={wordmarkImage}
+              src={resolvedWordmark}
               alt="Maison Dorée"
               fill
               sizes="(max-width: 768px) 260px, 330px"
@@ -83,7 +97,7 @@ export const HistoriaBlock: React.FC<HistoriaBlockProps> = ({
         <div className="md:col-span-5 lg:col-span-5 flex justify-center items-center">
           <div className="relative w-full max-w-[460px] h-[280px] sm:h-[330px] border-4 md:border-[5px] border-white/90 shadow-2xl shadow-black/70 rounded-sm overflow-hidden">
             <Image
-              src={mediaImage}
+              src={resolvedMediaImage}
               alt="Bienvenidos a Manabí"
               fill
               sizes="(max-width: 768px) 100vw, 460px"

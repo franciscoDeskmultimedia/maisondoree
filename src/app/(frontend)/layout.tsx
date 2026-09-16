@@ -11,7 +11,9 @@ import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { AgeGateModal } from '@/components/AgeGateModal'
 import { seed } from '@/payload/seed'
+import { getMediaUrl } from '@/lib/media'
 import './globals.css'
 
 const caprasimo = Caprasimo({
@@ -51,9 +53,34 @@ const archivoNarrow = Archivo_Narrow({
   display: 'swap',
 })
 
-export const metadata: Metadata = {
-  title: 'Maison Dorée — Ecuadorian & French cream licor',
-  description: 'Uniendo una tradición familiar desde 1862.',
+export async function generateMetadata(): Promise<Metadata> {
+  try {
+    const payload = await getPayload({ config: configPromise })
+    const siteSettings = await payload.findGlobal({ slug: 'site-settings' })
+    const faviconUrl =
+      getMediaUrl(siteSettings?.favicon) ||
+      (typeof siteSettings?.faviconUrl === 'string' && siteSettings.faviconUrl
+        ? siteSettings.faviconUrl
+        : '/favicon.ico')
+
+    return {
+      title: siteSettings?.siteTitle || 'Maison Dorée — Ecuadorian & French cream licor',
+      description: siteSettings?.siteDescription || 'Uniendo una tradición familiar desde 1862.',
+      icons: {
+        icon: faviconUrl,
+        shortcut: faviconUrl,
+        apple: faviconUrl,
+      },
+    }
+  } catch {
+    return {
+      title: 'Maison Dorée — Ecuadorian & French cream licor',
+      description: 'Uniendo una tradición familiar desde 1862.',
+      icons: {
+        icon: '/favicon.ico',
+      },
+    }
+  }
 }
 
 export default async function RootLayout({
@@ -63,6 +90,7 @@ export default async function RootLayout({
 }) {
   let headerData = null
   let footerData = null
+  let siteSettingsData: any = null
 
   try {
     const payload = await getPayload({ config: configPromise })
@@ -74,9 +102,13 @@ export default async function RootLayout({
 
     headerData = await payload.findGlobal({ slug: 'header' })
     footerData = await payload.findGlobal({ slug: 'footer' })
+    siteSettingsData = await payload.findGlobal({ slug: 'site-settings' })
   } catch (error) {
     console.error('Error fetching global layout data from Payload:', error)
   }
+
+  const isAgeGateEnabled =
+    siteSettingsData?.enableAgeGate !== undefined ? Boolean(siteSettingsData.enableAgeGate) : true
 
   return (
     <html
@@ -85,6 +117,13 @@ export default async function RootLayout({
       className={`${caprasimo.variable} ${quintessential.variable} ${charisSIL.variable} ${montserrat.variable} ${archivoNarrow.variable}`}
     >
       <body suppressHydrationWarning className="antialiased min-h-screen flex flex-col bg-[#240403] text-white">
+        <AgeGateModal
+          enabled={isAgeGateEnabled}
+          title={siteSettingsData?.ageGateTitle}
+          message={siteSettingsData?.ageGateMessage}
+          confirmText={siteSettingsData?.ageGateConfirmText}
+          rejectText={siteSettingsData?.ageGateRejectText}
+        />
         <Header data={headerData ? (headerData as any) : undefined} />
         <main className="flex-grow">{children}</main>
         <Footer data={footerData ? (footerData as any) : undefined} />

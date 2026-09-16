@@ -6,6 +6,13 @@ export const HistoriaBlock: Block = {
   fields: [
     {
       name: 'wordmarkImage',
+      label: 'Wordmark Image (Upload from Media Library)',
+      type: 'upload',
+      relationTo: 'media',
+    },
+    {
+      name: 'wordmarkImageUrl',
+      label: 'Wordmark Image URL (Fallback)',
       type: 'text',
       defaultValue: '/images/wordmark.png',
     },
@@ -37,6 +44,13 @@ export const HistoriaBlock: Block = {
     },
     {
       name: 'mediaImage',
+      label: 'Media Image (Upload from Media Library)',
+      type: 'upload',
+      relationTo: 'media',
+    },
+    {
+      name: 'mediaImageUrl',
+      label: 'Media Image URL (Fallback)',
       type: 'text',
       defaultValue: '/images/manabi.jpg',
     },

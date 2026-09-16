@@ -31,7 +31,14 @@ export const HeroBlock: Block = {
       defaultValue: '/video/hero.mp4',
     },
     {
+      name: 'posterImage',
+      label: 'Poster Image (Upload from Media Library)',
+      type: 'upload',
+      relationTo: 'media',
+    },
+    {
       name: 'posterUrl',
+      label: 'Poster URL (Fallback)',
       type: 'text',
       defaultValue: '/images/hero.png',
     },

@@ -94,10 +94,12 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    'site-settings': SiteSetting;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
   };
   locale: null;
   widgets: {
@@ -220,7 +222,27 @@ export interface Page {
   id: number;
   title: string;
   slug: string;
-  layout?: (HeroBlock | SaboresBlock | SaintManichoBlock | HistoriaBlock | DondeEncontrarnosBlock)[] | null;
+  layout?:
+    | (
+        | HeroBlock
+        | SaboresBlock
+        | TwoColBlock
+        | SaintManichoBlock
+        | HistoriaBlock
+        | DondeEncontrarnosBlock
+        | {
+            eyebrow?: string | null;
+            title?: string | null;
+            sub?: string | null;
+            formAction?: string | null;
+            subject?: string | null;
+            submitText?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactoBlock';
+          }
+      )[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -234,6 +256,7 @@ export interface HeroBlock {
   ctaLabel?: string | null;
   ctaUrl?: string | null;
   videoSrc?: string | null;
+  posterImage?: (number | null) | Media;
   posterUrl?: string | null;
   id?: string | null;
   blockName?: string | null;
@@ -252,6 +275,45 @@ export interface SaboresBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TwoColBlock".
+ */
+export interface TwoColBlock {
+  columns?:
+    | (
+        | {
+            image?: (number | null) | Media;
+            imageUrl?: string | null;
+            alt?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'imageBlock';
+          }
+        | {
+            tag?: string | null;
+            title: string;
+            description?: string | null;
+            ctaLabel?: string | null;
+            ctaUrl?: string | null;
+            image?: (number | null) | Media;
+            imageUrl?: string | null;
+            theme?: ('maroon' | 'dark' | 'cream') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'cardBlock';
+          }
+      )[]
+    | null;
+  /**
+   * Optional fallback: used if no column blocks are added above.
+   */
+  imagePath?: string | null;
+  altText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'twoColBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "SaintManichoBlock".
  */
 export interface SaintManichoBlock {
@@ -266,13 +328,15 @@ export interface SaintManichoBlock {
  * via the `definition` "HistoriaBlock".
  */
 export interface HistoriaBlock {
-  wordmarkImage?: string | null;
+  wordmarkImage?: (number | null) | Media;
+  wordmarkImageUrl?: string | null;
   scriptText?: string | null;
   paragraph1?: string | null;
   paragraph2?: string | null;
   sinceText?: string | null;
   signText?: string | null;
-  mediaImage?: string | null;
+  mediaImage?: (number | null) | Media;
+  mediaImageUrl?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'historiaBlock';
@@ -477,9 +541,22 @@ export interface PagesSelect<T extends boolean = true> {
     | {
         heroBlock?: T | HeroBlockSelect<T>;
         saboresBlock?: T | SaboresBlockSelect<T>;
+        twoColBlock?: T | TwoColBlockSelect<T>;
         saintManichoBlock?: T | SaintManichoBlockSelect<T>;
         historiaBlock?: T | HistoriaBlockSelect<T>;
         dondeEncontrarnosBlock?: T | DondeEncontrarnosBlockSelect<T>;
+        contactoBlock?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              sub?: T;
+              formAction?: T;
+              subject?: T;
+              submitText?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;
@@ -494,6 +571,7 @@ export interface HeroBlockSelect<T extends boolean = true> {
   ctaLabel?: T;
   ctaUrl?: T;
   videoSrc?: T;
+  posterImage?: T;
   posterUrl?: T;
   id?: T;
   blockName?: T;
@@ -505,6 +583,43 @@ export interface HeroBlockSelect<T extends boolean = true> {
 export interface SaboresBlockSelect<T extends boolean = true> {
   eyebrow?: T;
   autoPlayMs?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TwoColBlock_select".
+ */
+export interface TwoColBlockSelect<T extends boolean = true> {
+  columns?:
+    | T
+    | {
+        imageBlock?:
+          | T
+          | {
+              image?: T;
+              imageUrl?: T;
+              alt?: T;
+              id?: T;
+              blockName?: T;
+            };
+        cardBlock?:
+          | T
+          | {
+              tag?: T;
+              title?: T;
+              description?: T;
+              ctaLabel?: T;
+              ctaUrl?: T;
+              image?: T;
+              imageUrl?: T;
+              theme?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  imagePath?: T;
+  altText?: T;
   id?: T;
   blockName?: T;
 }
@@ -524,12 +639,14 @@ export interface SaintManichoBlockSelect<T extends boolean = true> {
  */
 export interface HistoriaBlockSelect<T extends boolean = true> {
   wordmarkImage?: T;
+  wordmarkImageUrl?: T;
   scriptText?: T;
   paragraph1?: T;
   paragraph2?: T;
   sinceText?: T;
   signText?: T;
   mediaImage?: T;
+  mediaImageUrl?: T;
   id?: T;
   blockName?: T;
 }
@@ -648,6 +765,29 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings".
+ */
+export interface SiteSetting {
+  id: number;
+  siteTitle?: string | null;
+  siteDescription?: string | null;
+  favicon?: (number | null) | Media;
+  faviconUrl?: string | null;
+  /**
+   * Muestra un popup al ingresar requiriendo confirmación de mayoría de edad.
+   */
+  enableAgeGate?: boolean | null;
+  ageGateTitle?: string | null;
+  ageGateMessage?: string | null;
+  ageGateConfirmText?: string | null;
+  ageGateRejectText?: string | null;
+  underageTitle?: string | null;
+  underageMessage?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
@@ -698,6 +838,26 @@ export interface FooterSelect<T extends boolean = true> {
         url?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  siteTitle?: T;
+  siteDescription?: T;
+  favicon?: T;
+  faviconUrl?: T;
+  enableAgeGate?: T;
+  ageGateTitle?: T;
+  ageGateMessage?: T;
+  ageGateConfirmText?: T;
+  ageGateRejectText?: T;
+  underageTitle?: T;
+  underageMessage?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

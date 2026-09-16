@@ -1,9 +1,11 @@
 import type { CollectionConfig } from 'payload'
 import { HeroBlock } from '../blocks/HeroBlock'
 import { SaboresBlock } from '../blocks/SaboresBlock'
+import { TwoColBlock } from '../blocks/TwoColBlock'
 import { SaintManichoBlock } from '../blocks/SaintManichoBlock'
 import { HistoriaBlock } from '../blocks/HistoriaBlock'
 import { DondeEncontrarnosBlock } from '../blocks/DondeEncontrarnosBlock'
+import { ContactoBlock } from '../blocks/ContactoBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -41,9 +43,11 @@ export const Pages: CollectionConfig = {
       blocks: [
         HeroBlock,
         SaboresBlock,
+        TwoColBlock,
         SaintManichoBlock,
         HistoriaBlock,
         DondeEncontrarnosBlock,
+        ContactoBlock,
       ],
     },
   ],

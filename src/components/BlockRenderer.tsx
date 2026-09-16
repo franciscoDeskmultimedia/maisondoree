@@ -1,9 +1,10 @@
 import React from 'react'
 import { HeroBlock } from './blocks/HeroBlock'
 import { SaboresCarouselBlock } from './blocks/SaboresCarouselBlock'
-import { SaintManichoBlock } from './blocks/SaintManichoBlock'
+import { SaintManichoBlock, TwoColBlock } from './blocks/SaintManichoBlock'
 import { HistoriaBlock } from './blocks/HistoriaBlock'
 import { DondeEncontrarnosBlock } from './blocks/DondeEncontrarnosBlock'
+import { ContactoBlock } from './blocks/ContactoBlock'
 
 interface BlockData {
   blockType: string
@@ -26,12 +27,15 @@ export const BlockRenderer: React.FC<BlockRendererProps> = ({ blocks }) => {
             return <HeroBlock key={block.id || index} {...block} />
           case 'saboresBlock':
             return <SaboresCarouselBlock key={block.id || index} {...block} />
+          case 'twoColBlock':
           case 'saintManichoBlock':
-            return <SaintManichoBlock key={block.id || index} {...block} />
+            return <TwoColBlock key={block.id || index} {...block} />
           case 'historiaBlock':
             return <HistoriaBlock key={block.id || index} {...block} />
           case 'dondeEncontrarnosBlock':
             return <DondeEncontrarnosBlock key={block.id || index} {...block} />
+          case 'contactoBlock':
+            return <ContactoBlock key={block.id || index} {...block} />
           default:
             return null
         }

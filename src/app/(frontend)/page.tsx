@@ -1,7 +1,7 @@
 import React from 'react'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
-import { BlockRenderer } from '@/components/BlockRenderer'
+import { PageClient } from '@/components/PageClient'
 import { seed } from '@/payload/seed'
 
 export const revalidate = 0
@@ -49,6 +49,15 @@ const defaultBlocks = [
       { city: 'QUEVEDO', logo1: 'LOGO 1', logo2: 'LOGO 2' },
     ],
   },
+  {
+    blockType: 'contactoBlock',
+    eyebrow: 'TRABAJEMOS JUNTOS',
+    title: '¿QUIERES VENDER\nNUESTROS PRODUCTOS?',
+    sub: 'Déjanos tus datos y nos pondremos en contacto contigo.',
+    formAction: 'https://formsubmit.co/maisondoreeliqueur@gmail.com',
+    subject: 'Nuevo interesado en distribuir Maison Dorée',
+    submitText: 'ENVIAR',
+  },
 ]
 
 export default async function HomePage() {
@@ -90,10 +99,5 @@ export default async function HomePage() {
     console.error('Failed to fetch home page:', err)
   }
 
-  const blocksToRender =
-    homePage?.layout && Array.isArray(homePage.layout) && homePage.layout.length > 0
-      ? homePage.layout
-      : defaultBlocks
-
-  return <BlockRenderer blocks={blocksToRender as any} />
+  return <PageClient page={homePage} defaultBlocks={defaultBlocks} />
 }

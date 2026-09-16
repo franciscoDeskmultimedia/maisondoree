@@ -72,6 +72,29 @@ export async function seed() {
     },
   })
 
+  // 4. Seed Site Settings (Favicon, SEO & Age Gate)
+  try {
+    await payload.updateGlobal({
+      slug: 'site-settings',
+      data: {
+        siteTitle: 'Maison Dorée — Ecuadorian & French cream licor',
+        siteDescription: 'Uniendo una tradición familiar desde 1862.',
+        faviconUrl: '/favicon.ico',
+        enableAgeGate: true,
+        ageGateTitle: 'BIENVENIDO A MAISON DORÉE',
+        ageGateMessage:
+          'Debes ser mayor de 18 años para ingresar a nuestro sitio web y conocer nuestros licores artesanales.',
+        ageGateConfirmText: 'SÍ, SOY MAYOR DE 18 AÑOS',
+        ageGateRejectText: 'NO, SOY MENOR DE EDAD',
+        underageTitle: 'ACCESO RESTRINGIDO',
+        underageMessage:
+          'Lo sentimos, debes ser mayor de 18 años para acceder y consumir nuestros productos. El consumo responsable es fundamental.',
+      },
+    })
+  } catch {
+    // optional initial seed
+  }
+
   // 4. Seed Flavors
   const flavorsData = [
     {
@@ -173,6 +196,15 @@ export async function seed() {
         { city: 'MANTA', logo1: 'LOGO 1', logo2: 'LOGO 2' },
         { city: 'QUEVEDO', logo1: 'LOGO 1', logo2: 'LOGO 2' },
       ],
+    },
+    {
+      blockType: 'contactoBlock',
+      eyebrow: 'TRABAJEMOS JUNTOS',
+      title: '¿QUIERES VENDER\nNUESTROS PRODUCTOS?',
+      sub: 'Déjanos tus datos y nos pondremos en contacto contigo.',
+      formAction: 'https://formsubmit.co/maisondoreeliqueur@gmail.com',
+      subject: 'Nuevo interesado en distribuir Maison Dorée',
+      submitText: 'ENVIAR',
     },
   ]
 

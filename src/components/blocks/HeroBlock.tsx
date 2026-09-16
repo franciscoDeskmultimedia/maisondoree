@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
+import { getMediaUrl } from '@/lib/media'
 
 export interface HeroBlockProps {
   title?: string
@@ -9,6 +10,7 @@ export interface HeroBlockProps {
   ctaLabel?: string
   ctaUrl?: string
   videoSrc?: string
+  posterImage?: any
   posterUrl?: string
   heroImage?: string
   id?: string
@@ -20,6 +22,7 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({
   ctaLabel = 'COMPRA AHORA',
   ctaUrl = 'https://wa.me/593985504731',
   videoSrc = '/video/hero.mp4',
+  posterImage,
   posterUrl = '/images/hero.png',
   heroImage,
   id = 'inicio',
@@ -30,10 +33,11 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({
   const [isPaused, setIsPaused] = useState(false)
   const [hasVideoError, setHasVideoError] = useState(false)
 
-  // Use posterUrl or fallback to heroImage
+  // Use posterImage upload, or fallback to posterUrl or heroImage
   const effectivePoster =
-    (typeof posterUrl === 'string' && posterUrl) ||
-    (typeof heroImage === 'string' && heroImage) ||
+    getMediaUrl(posterImage) ||
+    (typeof posterUrl === 'string' && posterUrl ? posterUrl : '') ||
+    (typeof heroImage === 'string' && heroImage ? heroImage : '') ||
     '/images/hero.png'
 
   // Format title safely to handle null/undefined from CMS or string with <br> tags
