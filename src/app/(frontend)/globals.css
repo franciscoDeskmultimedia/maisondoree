@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: var(--font-display), "Caprasimo", serif;
+  --font-script: var(--font-script), "Quintessential", serif;
+  --font-serif: var(--font-serif), "Charis SIL", "Georgia", serif;
+  --font-sans: var(--font-sans), "Montserrat", sans-serif;
+  --font-narrow: var(--font-narrow), "Archivo Narrow", sans-serif;
+
+  --color-maroon-top: #390604;
+  --color-maroon: #4a110b;
+  --color-maroon-glow: #6b3018;
+  --color-maroon-deep: #240403;
+  --color-cream: #ffffff;
+  --color-cream-soft: #ffffff;
+  --color-beige: #e9dcc6;
+  --color-green: #22402d;
+  --color-ink: #1d1210;
+}
+
+@layer base {
+  :root {
+    --maxw: 1320px;
+    --header-h: clamp(88px, 9vw, 120px);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--header-h);
+  }
+
+  body {
+    margin: 0;
+    padding-top: var(--header-h);
+    font-family: var(--font-serif);
+    color: #ffffff;
+    background: #240403;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-script {
+  font-family: var(--font-script);
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.font-narrow {
+  font-family: var(--font-narrow);
+}
+
+/* Background Patterns & Watermarks */
+.bg-eagle-pattern {
+  background-image: url("/images/pattern-eagle.png");
+  background-repeat: repeat;
+  background-size: clamp(120px, 12vw, 164px) auto;
+}
+
+.bg-eagle-repeat-x {
+  background-image: url("/images/eagle.png");
+  background-repeat: repeat-x;
+  background-position: center;
+  background-size: auto 78%;
+}
+
+.eagle-watermark-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: min(25vw, 340px);
+  background: url("/images/eagle-tint.png") right center / auto 100% no-repeat;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Custom Button */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 44px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 9999px;
+  font-family: var(--font-script);
+  font-size: clamp(15px, 1.5vw, 21px);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #ffffff;
+  transform: translateY(-2px);
+}
