@@ -37,7 +37,7 @@ export async function seed() {
     slug: 'header',
     data: {
       logoPath: '/images/wordmark.png',
-      subtitle: 'Ecuadorian & French cream licor',
+      subtitle: 'Ecuadorian & French cream liqueur',
       navLinksLeft: [
         { label: 'PRODUCTO', url: '#productos' },
         { label: 'HISTORIA', url: '#historia' },
@@ -96,7 +96,7 @@ export async function seed() {
     // optional initial seed
   }
 
-  // 4. Seed Flavors
+  // 5. Seed Flavors
   const flavorsData = [
     {
       name: 'BRISE MENTHOLÉE',
@@ -145,7 +145,7 @@ export async function seed() {
     }
   }
 
-  // 5. Seed Home Page
+  // 6. Seed Home Page
   const existingPages = await payload.find({
     collection: 'pages',
     where: {
@@ -158,10 +158,10 @@ export async function seed() {
   const defaultHomeLayout: any[] = [
     {
       blockType: 'heroBlock',
-      title: 'El secreto más dulce\nse sirve con hielo.',
+      title: 'Dulce capricho',
       subtitle: 'Prueba sus diferentes sabores.',
       ctaLabel: 'COMPRA AHORA',
-      ctaUrl: 'https://wa.me/593985504731',
+      ctaUrl: '#productos',
       videoSrc: '/video/hero.mp4',
       posterUrl: '/images/hero.png',
     },
@@ -171,13 +171,25 @@ export async function seed() {
       autoPlayMs: 2000,
     },
     {
-      blockType: 'saintManichoBlock',
+      blockType: 'twoColBlock',
       imagePath: '/images/saint-manicho.jpg',
       altText: 'Prueba el nuevo sabor Saint Manicho',
+      columns: [
+        {
+          blockType: 'imageBlock',
+          imageUrl: '/images/saint-manicho.jpg',
+          alt: 'Maison Dorée',
+        },
+        {
+          blockType: 'imageBlock',
+          imageUrl: '/images/saint-pistacho.jpg',
+          alt: 'Maison Dorée',
+        },
+      ],
     },
     {
       blockType: 'historiaBlock',
-      wordmarkImage: '/images/wordmark.png',
+      wordmarkImageUrl: '/images/wordmark.png',
       scriptText: 'Ecuadorian & French cream licor',
       paragraph1:
         'En el año 2025, durante unas vacaciones en la costa ecuatoriana, compartí mi receta familiar de rompope manabita con unos amigos franceses, quienes insistieron en que más personas debían probarla. Inspirado por su motivación, decidí fundar la marca de licores crema de mayor calidad en el mercado ecuatoriano.',
@@ -185,7 +197,7 @@ export async function seed() {
         'Así nació Maison Dorée.\nUniendo una tradición familiar',
       sinceText: 'desde 1862.',
       signText: '- Douglas Pazmiño, Fundador.',
-      mediaImage: '/images/manabi.jpg',
+      mediaImageUrl: '/images/manabi.jpg',
     },
     {
       blockType: 'dondeEncontrarnosBlock',
@@ -210,15 +222,19 @@ export async function seed() {
   ]
 
   if (existingPages.docs.length === 0) {
-    await payload.create({
-      collection: 'pages',
-      data: {
-        title: 'Maison Dorée — Home',
-        slug: 'home',
-        layout: defaultHomeLayout,
-      },
-    })
-    console.log('Seeded Home Page with blocks!')
+    try {
+      await payload.create({
+        collection: 'pages',
+        data: {
+          title: 'Maison Dorée — Home',
+          slug: 'home',
+          layout: defaultHomeLayout,
+        },
+      })
+      console.log('Seeded Home Page with blocks!')
+    } catch {
+      // Page already created concurrently
+    }
   } else if (!existingPages.docs[0].layout || (existingPages.docs[0].layout as any[]).length === 0) {
     await payload.update({
       collection: 'pages',
