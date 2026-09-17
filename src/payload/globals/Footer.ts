@@ -5,6 +5,24 @@ export const FooterGlobal: GlobalConfig = {
   access: {
     read: () => true,
   },
+  hooks: {
+    beforeChange: [
+      ({ data }) => {
+        if (data) {
+          if (Array.isArray(data.topLinks)) {
+            data.topLinks = data.topLinks.map(({ id: _id, ...rest }: any) => rest)
+          }
+          if (Array.isArray(data.socialLinks)) {
+            data.socialLinks = data.socialLinks.map(({ id: _id, ...rest }: any) => rest)
+          }
+          if (Array.isArray(data.bottomMenu)) {
+            data.bottomMenu = data.bottomMenu.map(({ id: _id, ...rest }: any) => rest)
+          }
+        }
+        return data
+      },
+    ],
+  },
   fields: [
     {
       name: 'logoPath',
