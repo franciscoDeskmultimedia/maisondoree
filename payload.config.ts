@@ -25,20 +25,16 @@ const postgresUrl =
     ? process.env.DATABASE_URI
     : undefined)
 
-const plugins = []
-
-if (process.env.BLOB_READ_WRITE_TOKEN && process.env.NODE_ENV === 'production') {
-  plugins.push(
+export default buildConfig({
+  plugins: [
     vercelBlobStorage({
+      enabled: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
       collections: {
         media: true,
       },
-      token: process.env.BLOB_READ_WRITE_TOKEN,
+      token: process.env.BLOB_READ_WRITE_TOKEN || '',
     }),
-  )
-}
-
-export default buildConfig({
+  ],
   admin: {
     user: Users.slug,
     meta: {
@@ -102,5 +98,4 @@ export default buildConfig({
           url: process.env.DATABASE_URI || 'file:./payload.db',
         },
       }),
-  plugins,
 })
