@@ -183,43 +183,37 @@ export const SaboresCarouselBlock: React.FC<SaboresCarouselBlockProps> = ({
                 slideRefs.current[i] = el
               }}
               onClick={() => setIndex(i)}
-              className={`flex-none h-full flex items-end gap-[20px] cursor-pointer transition-all duration-500 ${
+              className={`flex-none h-full flex items-end gap-[16px] sm:gap-[20px] cursor-pointer transition-all duration-500 ${
                 i === index ? 'opacity-100 scale-105 z-20' : 'opacity-65 hover:opacity-90 scale-95'
               }`}
             >
-              <div className="relative h-[clamp(260px,38vw,580px)] w-[clamp(100px,14vw,220px)]">
-                <Image
-                  src={flavor.bottle750}
-                  alt={`${flavor.name} 750ml`}
-                  fill
-                  priority={i === index}
-                  sizes="(max-width: 768px) 140px, 220px"
-                  onLoad={updatePosition}
-                  className="object-contain filter drop-shadow-[0_26px_26px_rgba(0,0,0,0.5)]"
-                />
-              </div>
-              <div className="relative h-[clamp(200px,30vw,460px)] w-[clamp(80px,11vw,180px)]">
-                <Image
-                  src={flavor.bottle375}
-                  alt={`${flavor.name} 375ml`}
-                  fill
-                  priority={i === index}
-                  sizes="(max-width: 768px) 110px, 180px"
-                  onLoad={updatePosition}
-                  className="object-contain filter drop-shadow-[0_20px_20px_rgba(0,0,0,0.45)]"
-                />
-              </div>
-              <div className="relative h-[clamp(150px,22vw,340px)] w-[clamp(60px,8vw,130px)]">
-                <Image
-                  src={flavor.bottle160}
-                  alt={`${flavor.name} 160ml`}
-                  fill
-                  priority={i === index}
-                  sizes="(max-width: 768px) 80px, 130px"
-                  onLoad={updatePosition}
-                  className="object-contain filter drop-shadow-[0_16px_16px_rgba(0,0,0,0.4)]"
-                />
-              </div>
+              <Image
+                src={flavor.bottle750}
+                alt={`${flavor.name} 750ml`}
+                width={220}
+                height={580}
+                priority={i === index}
+                onLoad={updatePosition}
+                className="h-[clamp(260px,38vw,580px)] w-auto object-contain object-bottom filter drop-shadow-[0_26px_26px_rgba(0,0,0,0.5)]"
+              />
+              <Image
+                src={flavor.bottle375}
+                alt={`${flavor.name} 375ml`}
+                width={180}
+                height={460}
+                priority={i === index}
+                onLoad={updatePosition}
+                className="h-[clamp(200px,30vw,460px)] w-auto object-contain object-bottom filter drop-shadow-[0_20px_20px_rgba(0,0,0,0.45)]"
+              />
+              <Image
+                src={flavor.bottle160}
+                alt={`${flavor.name} 160ml`}
+                width={130}
+                height={340}
+                priority={i === index}
+                onLoad={updatePosition}
+                className="h-[clamp(150px,22vw,340px)] w-auto object-contain object-bottom filter drop-shadow-[0_16px_16px_rgba(0,0,0,0.4)]"
+              />
             </article>
           ))}
         </div>

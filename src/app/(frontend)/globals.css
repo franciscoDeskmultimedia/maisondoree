@@ -3,6 +3,7 @@
 @theme {
   --font-display: var(--font-display), "Caprasimo", serif;
   --font-script: var(--font-script), "Quintessential", serif;
+  --font-italianno: var(--font-italianno), "Italianno", cursive;
   --font-serif: var(--font-serif), "Charis SIL", "Georgia", serif;
   --font-sans: var(--font-sans), "Montserrat", sans-serif;
   --font-narrow: var(--font-narrow), "Archivo Narrow", sans-serif;
@@ -46,6 +47,10 @@
 
 .font-script {
   font-family: var(--font-script);
+}
+
+.font-italianno {
+  font-family: var(--font-italianno);
 }
 
 .font-serif {

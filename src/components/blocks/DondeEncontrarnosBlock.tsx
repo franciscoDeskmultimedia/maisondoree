@@ -30,10 +30,10 @@ export const DondeEncontrarnosBlock: React.FC<DondeEncontrarnosBlockProps> = ({
   return (
     <section
       id="donde"
-      className="relative bg-[#4a110b] pb-16 md:pb-28 overflow-hidden"
+      className="relative bg-[#4a110b] pb-16 pt-16 md:pb-28 md:pb-28 overflow-hidden"
     >
       {/* Top decorative line pattern */}
-      <div className="h-20 md:h-32 bg-eagle-repeat-x opacity-15 mb-10 md:mb-16" />
+      {/* <div className="h-20 md:h-32 bg-eagle-repeat-x opacity-15 mb-10 md:mb-16" /> */}
 
       <div className="max-w-[1320px] mx-auto px-6 text-center">
         <h2 className="font-display text-4xl sm:text-6xl md:text-8xl text-white font-normal leading-tight whitespace-pre-line">
@@ -62,7 +62,7 @@ export const DondeEncontrarnosBlock: React.FC<DondeEncontrarnosBlockProps> = ({
               )}
             </div>
           ))} */}
-          <p className="donde__soon text-center font-display font-normal text-[clamp(24px,-11px+11vw,220px)] leading-none tracking-[0.01em] text-cream m-0 px-[50px] py-0 whitespace-nowrap">
+          <p className="donde__soon text-center font-display font-normal text-[clamp(24px,-11px+8vw,220px)] leading-none tracking-[0.01em] text-cream m-0 px-[50px] py-0 whitespace-nowrap">
             PRÓXIMAMENTE
           </p>
         </div>

@@ -68,12 +68,13 @@ export const ContactoBlock: React.FC<ContactoBlockProps> = ({
       {/* Pattern background */}
       <div
         className="absolute inset-0 bg-eagle-pattern opacity-40 pointer-events-none z-0"
+        style={{ backgroundPosition: '0px 49px' }}
         aria-hidden="true"
       />
 
       <div className="relative z-10 max-w-[760px] mx-auto px-[clamp(24px,5vw,60px)] text-center">
         {eyebrow && (
-          <p className="font-sans font-medium text-[12px] sm:text-[13px] tracking-[0.2em] text-white/90 uppercase mb-3 inline-block">
+          <p className="font-script text-[20px] sm:text-[26px] tracking-wide text-white/95 mb-1 inline-block">
             {eyebrow}
           </p>
         )}
@@ -138,14 +139,14 @@ export const ContactoBlock: React.FC<ContactoBlockProps> = ({
 
             <label className="flex flex-col gap-2">
               <span className="font-sans font-medium tracking-[0.06em] text-[12px] uppercase text-white/90">
-                Correo electrónico
+                Ciudad
               </span>
               <input
-                type="email"
-                name="Correo electrónico"
+                type="text"
+                name="Ciudad"
                 required
-                autoComplete="email"
-                placeholder="tu@email.com"
+                autoComplete="address-level2"
+                placeholder="Ej. Guayaquil, Quito, Cuenca..."
                 className="font-serif text-[15px] text-white bg-[#f6efe1]/[0.06] border border-[#f6efe1]/50 rounded-[2px] px-3.5 py-3 outline-none transition-colors duration-200 placeholder:text-[#f6efe1]/45 focus:border-[#f6efe1]/95 focus:bg-[#f6efe1]/10"
               />
             </label>
@@ -160,6 +161,20 @@ export const ContactoBlock: React.FC<ContactoBlockProps> = ({
                 required
                 autoComplete="tel"
                 placeholder="+593 99 999 9999"
+                className="font-serif text-[15px] text-white bg-[#f6efe1]/[0.06] border border-[#f6efe1]/50 rounded-[2px] px-3.5 py-3 outline-none transition-colors duration-200 placeholder:text-[#f6efe1]/45 focus:border-[#f6efe1]/95 focus:bg-[#f6efe1]/10"
+              />
+            </label>
+
+            <label className="flex flex-col gap-2 sm:col-span-2">
+              <span className="font-sans font-medium tracking-[0.06em] text-[12px] uppercase text-white/90">
+                Correo electrónico
+              </span>
+              <input
+                type="email"
+                name="Correo electrónico"
+                required
+                autoComplete="email"
+                placeholder="tu@email.com"
                 className="font-serif text-[15px] text-white bg-[#f6efe1]/[0.06] border border-[#f6efe1]/50 rounded-[2px] px-3.5 py-3 outline-none transition-colors duration-200 placeholder:text-[#f6efe1]/45 focus:border-[#f6efe1]/95 focus:bg-[#f6efe1]/10"
               />
             </label>

@@ -6,6 +6,7 @@ import {
   Charis_SIL,
   Montserrat,
   Archivo_Narrow,
+  Italianno,
 } from 'next/font/google'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
@@ -23,6 +24,13 @@ const caprasimo = Caprasimo({
   weight: '400',
   subsets: ['latin'],
   variable: '--font-display',
+  display: 'swap',
+})
+
+const italianno = Italianno({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-italianno',
   display: 'swap',
 })
 
@@ -117,7 +125,7 @@ export default async function RootLayout({
     <html
       lang="es"
       suppressHydrationWarning
-      className={`${caprasimo.variable} ${quintessential.variable} ${charisSIL.variable} ${montserrat.variable} ${archivoNarrow.variable}`}
+      className={`${caprasimo.variable} ${quintessential.variable} ${charisSIL.variable} ${montserrat.variable} ${archivoNarrow.variable} ${italianno.variable}`}
     >
       <body suppressHydrationWarning className="antialiased min-h-screen flex flex-col bg-[#240403] text-white">
         <AgeGateModal

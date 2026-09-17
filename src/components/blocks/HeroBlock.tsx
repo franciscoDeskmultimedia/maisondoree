@@ -210,10 +210,10 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({
       {/* Main Hero Content */}
       <div className="relative z-20 w-full max-w-[1320px] mx-auto px-6 md:px-16 flex flex-col items-start text-left">
         <div className="max-w-3xl flex flex-col items-start text-left">
-          <h1 className="font-display text-[clamp(44px,7.5vw,110px)] font-normal leading-[0.96] text-white tracking-[0.005em] whitespace-pre-line mb-4 drop-shadow-lg">
+          <h1 className="font-italianno text-[clamp(54px,8.5vw,120px)] font-normal leading-[1.05] text-white tracking-[0.01em] whitespace-pre-line mb-4 drop-shadow-lg">
             {formattedTitle}
           </h1>
-          <p className="font-script text-[clamp(20px,2.6vw,38px)] text-white/95 my-4 drop-shadow">
+          <p className="font-serif text-[clamp(18px,2.2vw,28px)] text-white/95 my-3 drop-shadow">
             {safeSubtitle}
           </p>
           {isExternalCta ? (

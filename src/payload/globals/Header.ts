@@ -6,14 +6,25 @@ export const HeaderGlobal: GlobalConfig = {
     read: () => true,
   },
   hooks: {
-    beforeChange: [
+    beforeValidate: [
       ({ data }) => {
         if (data) {
+          const sanitizeArrayIds = (arr: any[]) => {
+            if (!Array.isArray(arr)) return arr
+            return arr.map((item) => {
+              if (item && typeof item === 'object') {
+                if ('id' in item && typeof item.id !== 'string' && item.id !== undefined && item.id !== null) {
+                  return { ...item, id: String(item.id) }
+                }
+              }
+              return item
+            })
+          }
           if (Array.isArray(data.navLinksLeft)) {
-            data.navLinksLeft = data.navLinksLeft.map(({ id: _id, ...rest }: any) => rest)
+            data.navLinksLeft = sanitizeArrayIds(data.navLinksLeft)
           }
           if (Array.isArray(data.navLinksRight)) {
-            data.navLinksRight = data.navLinksRight.map(({ id: _id, ...rest }: any) => rest)
+            data.navLinksRight = sanitizeArrayIds(data.navLinksRight)
           }
         }
         return data

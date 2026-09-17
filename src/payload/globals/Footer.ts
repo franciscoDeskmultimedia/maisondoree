@@ -6,17 +6,28 @@ export const FooterGlobal: GlobalConfig = {
     read: () => true,
   },
   hooks: {
-    beforeChange: [
+    beforeValidate: [
       ({ data }) => {
         if (data) {
+          const sanitizeArrayIds = (arr: any[]) => {
+            if (!Array.isArray(arr)) return arr
+            return arr.map((item) => {
+              if (item && typeof item === 'object') {
+                if ('id' in item && typeof item.id !== 'string' && item.id !== undefined && item.id !== null) {
+                  return { ...item, id: String(item.id) }
+                }
+              }
+              return item
+            })
+          }
           if (Array.isArray(data.topLinks)) {
-            data.topLinks = data.topLinks.map(({ id: _id, ...rest }: any) => rest)
+            data.topLinks = sanitizeArrayIds(data.topLinks)
           }
           if (Array.isArray(data.socialLinks)) {
-            data.socialLinks = data.socialLinks.map(({ id: _id, ...rest }: any) => rest)
+            data.socialLinks = sanitizeArrayIds(data.socialLinks)
           }
           if (Array.isArray(data.bottomMenu)) {
-            data.bottomMenu = data.bottomMenu.map(({ id: _id, ...rest }: any) => rest)
+            data.bottomMenu = sanitizeArrayIds(data.bottomMenu)
           }
         }
         return data

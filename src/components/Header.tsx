@@ -56,7 +56,7 @@ export const Header: React.FC<HeaderProps> = ({ data }) => {
     >
       <nav className="w-full max-w-[1320px] mx-auto flex items-center justify-between relative">
         {/* Left Nav Links (Desktop) */}
-        <ul className="hidden lg:flex items-center gap-8 text-[13px] md:text-[15px] font-sans tracking-widest text-white uppercase">
+        <ul className="hidden lg:flex items-center gap-8 text-[17px] md:text-[20px] font-script tracking-wider text-white">
           {navLinksLeft.map((link, idx) => (
             <li key={idx}>
               <Link
@@ -90,7 +90,7 @@ export const Header: React.FC<HeaderProps> = ({ data }) => {
         </Link>
 
         {/* Right Nav Links (Desktop) */}
-        <ul className="hidden lg:flex items-center gap-8 text-[13px] md:text-[15px] font-sans tracking-widest text-white uppercase">
+        <ul className="hidden lg:flex items-center gap-8 text-[17px] md:text-[20px] font-script tracking-wider text-white">
           {navLinksRight.map((link, idx) => (
             <li key={idx}>
               <Link
@@ -132,13 +132,13 @@ export const Header: React.FC<HeaderProps> = ({ data }) => {
 
         {/* Mobile Menu Dropdown */}
         {isOpen && (
-          <div className="lg:hidden absolute top-full left-0 right-0 bg-[#390604] shadow-2xl py-6 flex flex-col items-center gap-4 text-white font-sans tracking-wider text-center border-t border-white/10">
+          <div className="lg:hidden absolute top-full left-0 right-0 bg-[#390604] shadow-2xl py-6 flex flex-col items-center gap-4 text-white font-script text-lg md:text-xl tracking-wider text-center border-t border-white/10">
             {navLinksLeft.concat(navLinksRight).map((link, idx) => (
               <Link
                 key={idx}
                 href={link.url}
                 onClick={() => setIsOpen(false)}
-                className="hover:text-amber-200 py-2 text-base"
+                className="hover:text-amber-200 py-2"
               >
                 {link.label}
               </Link>
