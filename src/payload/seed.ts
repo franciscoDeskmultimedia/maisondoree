@@ -70,6 +70,8 @@ export async function seed() {
         { label: 'FAMILIA MD', url: '#historia' },
         { label: 'DONDE ENCONTRARNOS', url: '#donde' },
       ],
+      copyrightText: 'Copyright © 2026 MAISON DORÉE LIQUEUR. All Rights Reserved',
+      designedByText: 'Designed By PILOW.',
     },
   })
 

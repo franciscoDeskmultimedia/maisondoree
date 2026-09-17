@@ -760,6 +760,8 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  copyrightText?: string | null;
+  designedByText?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -838,6 +840,8 @@ export interface FooterSelect<T extends boolean = true> {
         url?: T;
         id?: T;
       };
+  copyrightText?: T;
+  designedByText?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

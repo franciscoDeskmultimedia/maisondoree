@@ -61,5 +61,17 @@ export const FooterGlobal: GlobalConfig = {
         },
       ],
     },
+    {
+      name: 'copyrightText',
+      type: 'text',
+      label: 'Copyright Text',
+      defaultValue: 'Copyright © 2026 MAISON DORÉE LIQUEUR. All Rights Reserved',
+    },
+    {
+      name: 'designedByText',
+      type: 'text',
+      label: 'Designed By Text',
+      defaultValue: 'Designed By PILOW.',
+    },
   ],
 }

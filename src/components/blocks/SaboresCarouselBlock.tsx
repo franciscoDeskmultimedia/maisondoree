@@ -183,7 +183,7 @@ export const SaboresCarouselBlock: React.FC<SaboresCarouselBlockProps> = ({
                 slideRefs.current[i] = el
               }}
               onClick={() => setIndex(i)}
-              className={`flex-none h-full flex items-end gap-[43.5px] cursor-pointer transition-all duration-500 ${
+              className={`flex-none h-full flex items-end gap-[20px] cursor-pointer transition-all duration-500 ${
                 i === index ? 'opacity-100 scale-105 z-20' : 'opacity-65 hover:opacity-90 scale-95'
               }`}
             >
