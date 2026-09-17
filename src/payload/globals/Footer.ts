@@ -35,7 +35,7 @@ export const FooterGlobal: GlobalConfig = {
         {
           name: 'platform',
           type: 'select',
-          options: ['facebook', 'whatsapp', 'instagram'],
+          options: ['facebook', 'whatsapp', 'instagram', 'tiktok'],
           required: true,
         },
         {

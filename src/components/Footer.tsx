@@ -31,8 +31,9 @@ export const Footer: React.FC<FooterProps> = ({ data }) => {
   ]
   const socialLinks = data?.socialLinks || [
     { platform: 'facebook', url: '#' },
-    { platform: 'whatsapp', url: '#' },
     { platform: 'instagram', url: '#' },
+    { platform: 'tiktok', url: '#' },
+    { platform: 'whatsapp', url: '#' },
   ]
   const bottomMenu = data?.bottomMenu || [
     { label: 'PRODUCTO', url: '#productos' },
@@ -53,6 +54,12 @@ export const Footer: React.FC<FooterProps> = ({ data }) => {
         return (
           <svg className="w-6 h-6 fill-white" viewBox="0 0 24 24">
             <path d="M12 2a9.9 9.9 0 00-8.5 15L2 22l5.2-1.4A10 10 0 1012 2m0 1.8a8.2 8.2 0 016.6 13L18 20l-3.3-.9-.4.2A8.2 8.2 0 1112 3.8m-3.1 4c-.15 0-.4.06-.6.28-.2.22-.8.78-.8 1.9s.82 2.2.93 2.35c.11.15 1.6 2.55 4 3.47 2 .77 2.4.62 2.83.58.43-.04 1.4-.57 1.6-1.13.2-.55.2-1.02.14-1.12-.06-.1-.22-.16-.46-.28-.24-.12-1.4-.7-1.62-.78-.22-.08-.38-.12-.54.12s-.62.78-.76.94c-.14.16-.28.18-.52.06a6.5 6.5 0 01-1.9-1.18 7.2 7.2 0 01-1.33-1.65c-.14-.24 0-.36.1-.48.1-.1.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.53-1.3-.74-1.78-.18-.42-.37-.42-.53-.43z" />
+          </svg>
+        )
+      case 'tiktok':
+        return (
+          <svg className="w-6 h-6 fill-white" viewBox="0 0 24 24">
+            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29.04.59.08.88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z" />
           </svg>
         )
       case 'instagram':

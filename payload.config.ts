@@ -21,8 +21,12 @@ export default buildConfig({
     user: Users.slug,
     meta: {
       titleSuffix: '— Maison Dorée Admin',
-      favicon: '/favicon.ico',
       icons: [
+        {
+          rel: 'icon',
+          type: 'image/x-icon',
+          url: '/favicon.ico',
+        },
         {
           rel: 'icon',
           type: 'image/png',

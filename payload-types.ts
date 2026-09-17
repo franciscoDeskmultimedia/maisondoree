@@ -748,7 +748,7 @@ export interface Footer {
     | null;
   socialLinks?:
     | {
-        platform: 'facebook' | 'whatsapp' | 'instagram';
+        platform: 'facebook' | 'whatsapp' | 'instagram' | 'tiktok';
         url: string;
         id?: string | null;
       }[]

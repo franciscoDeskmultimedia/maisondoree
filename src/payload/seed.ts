@@ -60,8 +60,9 @@ export async function seed() {
       ],
       socialLinks: [
         { platform: 'facebook', url: '#' },
-        { platform: 'whatsapp', url: '#' },
         { platform: 'instagram', url: '#' },
+        { platform: 'tiktok', url: '#' },
+        { platform: 'whatsapp', url: '#' },
       ],
       bottomMenu: [
         { label: 'PRODUCTO', url: '#productos' },
