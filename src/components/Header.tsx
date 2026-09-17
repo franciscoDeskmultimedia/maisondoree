@@ -24,14 +24,20 @@ export const Header: React.FC<HeaderProps> = ({ data }) => {
 
   const logoPath = data?.logoPath || '/images/wordmark.png'
   const subtitle = data?.subtitle || 'Ecuadorian & French cream licor'
-  const navLinksLeft = data?.navLinksLeft || [
-    { label: 'PRODUCTO', url: '#productos' },
-    { label: 'HISTORIA', url: '#historia' },
-  ]
-  const navLinksRight = data?.navLinksRight || [
-    { label: 'DONDE ENCONTRARNOS', url: '#donde' },
-    { label: 'CONTACTANOS', url: '#contacto' },
-  ]
+  const navLinksLeft =
+    data?.navLinksLeft !== undefined
+      ? data.navLinksLeft
+      : [
+          { label: 'PRODUCTO', url: '#productos' },
+          { label: 'HISTORIA', url: '#historia' },
+        ]
+  const navLinksRight =
+    data?.navLinksRight !== undefined
+      ? data.navLinksRight
+      : [
+          { label: 'DONDE ENCONTRARNOS', url: '#donde' },
+          { label: 'CONTACTANOS', url: '#contacto' },
+        ]
 
   useEffect(() => {
     const handleScroll = () => {

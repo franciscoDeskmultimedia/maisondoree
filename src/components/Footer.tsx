@@ -27,22 +27,31 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ data }) => {
   const logoPath = data?.logoPath || '/images/logo.png'
-  const topLinks = data?.topLinks || [
-    { label: 'Nuestra Historia', url: '#historia' },
-    { label: 'CONTACTANOS', url: '#contacto' },
-  ]
-  const socialLinks = data?.socialLinks || [
-    { platform: 'facebook', url: '#' },
-    { platform: 'instagram', url: '#' },
-    { platform: 'tiktok', url: '#' },
-    { platform: 'whatsapp', url: '#' },
-  ]
-  const bottomMenu = data?.bottomMenu || [
-    { label: 'PRODUCTO', url: '#productos' },
-    { label: 'HISTORIA', url: '#historia' },
-    { label: 'FAMILIA MD', url: '#historia' },
-    { label: 'DONDE ENCONTRARNOS', url: '#donde' },
-  ]
+  const topLinks =
+    data?.topLinks !== undefined
+      ? data.topLinks
+      : [
+          { label: 'Nuestra Historia', url: '#historia' },
+          { label: 'CONTACTANOS', url: '#contacto' },
+        ]
+  const socialLinks =
+    data?.socialLinks !== undefined
+      ? data.socialLinks
+      : [
+          { platform: 'facebook', url: '#' },
+          { platform: 'instagram', url: '#' },
+          { platform: 'tiktok', url: '#' },
+          { platform: 'whatsapp', url: '#' },
+        ]
+  const bottomMenu =
+    data?.bottomMenu !== undefined
+      ? data.bottomMenu
+      : [
+          { label: 'PRODUCTO', url: '#productos' },
+          { label: 'HISTORIA', url: '#historia' },
+          { label: 'FAMILIA MD', url: '#historia' },
+          { label: 'DONDE ENCONTRARNOS', url: '#donde' },
+        ]
   const copyrightText =
     data?.copyrightText !== undefined
       ? data.copyrightText
