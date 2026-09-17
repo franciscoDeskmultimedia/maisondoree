@@ -16,7 +16,8 @@ export const Pages: CollectionConfig = {
       url: ({ data }) => {
         const slug = data?.slug
         const path = !slug || slug === 'home' || slug === 'index' ? '' : slug
-        return `${process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'}/${path}`
+        const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL || ''
+        return `${baseUrl}/${path}`
       },
     },
   },

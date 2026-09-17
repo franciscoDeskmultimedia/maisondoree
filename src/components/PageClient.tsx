@@ -10,9 +10,14 @@ interface PageClientProps {
 }
 
 export const PageClient: React.FC<PageClientProps> = ({ page, defaultBlocks = [] }) => {
+  const serverURL =
+    typeof window !== 'undefined'
+      ? window.location.origin
+      : process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
+
   const { data } = useLivePreview({
     initialData: page,
-    serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
+    serverURL,
     depth: 2,
   })
 
