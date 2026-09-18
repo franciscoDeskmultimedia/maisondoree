@@ -71,7 +71,15 @@ export const Header: React.FC<HeaderProps> = ({ data }) => {
 
         {/* Center Brand */}
         <Link
-          href="#inicio"
+          href="/"
+          onClick={(e) => {
+            if (typeof window !== 'undefined' && window.location.pathname === '/') {
+              e.preventDefault()
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+              window.history.replaceState(null, '', '/')
+            }
+            setIsOpen(false)
+          }}
           className="flex flex-col items-center lg:mx-0 lg:absolute lg:left-1/2 lg:-translate-x-1/2"
         >
           <div className="relative h-7 md:h-11 w-36 md:w-56">
