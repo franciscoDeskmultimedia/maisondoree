@@ -48,13 +48,13 @@ export const HistoriaBlock: React.FC<HistoriaBlockProps> = ({
       <div className="eagle-watermark-left hidden md:block" />
 
       {/* Right Vertical Rotated Wordmark */}
-      <div className="absolute right-4 top-0 bottom-0 z-0 hidden lg:flex items-center justify-center pointer-events-none">
-        <div className="relative w-[500px] h-[100px] -rotate-90 opacity-80">
+      <div className="absolute right-0 mr-[20px] xl:right-2 top-0 bottom-0 w-20 xl:w-24 z-0 hidden lg:flex items-center justify-center pointer-events-none select-none">
+        <div className="relative w-[480px] h-[140px] -rotate-90 shrink-0 opacity-75">
           <Image
             src="/images/wordmark-tint.png"
             alt=""
             fill
-            sizes="500px"
+            sizes="480px"
             className="object-contain"
           />
         </div>

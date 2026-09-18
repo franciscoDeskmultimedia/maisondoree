@@ -120,7 +120,7 @@ export const SaboresCarouselBlock: React.FC<SaboresCarouselBlockProps> = ({
       className="relative bg-[#350903] pt-16 pb-12 overflow-hidden h-[clamp(580px,65vw,900px)] flex flex-col justify-between"
     >
       {/* Background Half-Eagle Watermark */}
-      <div className="absolute top-0 bottom-0 right-0 w-[min(40vw,500px)] bg-[url('/images/eagle-tint.png')] bg-left-center bg-no-repeat bg-contain opacity-70 pointer-events-none z-0" />
+      <div className="absolute top-0 bottom-0 right-0 w-[min(40vw,500px)] bg-[url('/images/eagle-tint.png')] bg-left-center bg-no-repeat bg-cover opacity-70 pointer-events-none z-0" />
 
       {/* Header Controls */}
       <div className="text-center z-10 px-4 relative">

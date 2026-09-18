@@ -107,7 +107,7 @@ export const Footer: React.FC<FooterProps> = ({ data }) => {
         </div>
 
         <div className="flex items-center gap-8 md:gap-16">
-          {topLinks.map((link, idx) => (
+          {/* {topLinks.map((link, idx) => (
             <Link
               key={idx}
               href={link.url}
@@ -115,7 +115,10 @@ export const Footer: React.FC<FooterProps> = ({ data }) => {
             >
               {link.label}
             </Link>
-          ))}
+          ))} */}
+          <p className="font-script text-lg md:text-2xl text-white hover:text-amber-200 transition-colors">
+            Contactanos
+          </p>
         </div>
 
         <div className="flex items-center gap-6">

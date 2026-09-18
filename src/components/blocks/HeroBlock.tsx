@@ -157,7 +157,7 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({
 
       {/* Video Controls (Mute & Play/Pause) */}
       {!hasVideoError && (
-        <div className="absolute bottom-6 right-6 md:bottom-10 md:right-12 z-30 flex items-center gap-3">
+        <div className="absolute bottom-6 left-6 md:bottom-10 md:left-12 z-30 flex items-center gap-3">
           {/* Mute Button */}
           <button
             type="button"
@@ -209,8 +209,8 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({
 
       {/* Main Hero Content */}
       <div className="relative z-20 w-full max-w-[1320px] mx-auto px-6 md:px-16 flex flex-col items-start text-left">
-        <div className="max-w-3xl flex flex-col items-start text-left">
-          <h1 className="font-italianno text-[clamp(54px,8.5vw,120px)] font-normal leading-[1.05] text-white tracking-[0.01em] whitespace-pre-line mb-4 drop-shadow-lg">
+        <div className="max-w-2xl flex flex-col items-start text-left">
+          <h1 className="font-italianno text-[clamp(54px,8.5vw,120px)] font-normal leading-[0.78] text-white tracking-[0.01em] whitespace-pre-line mb-4 drop-shadow-lg">
             {formattedTitle}
           </h1>
           <p className="font-serif text-[clamp(18px,2.2vw,28px)] text-white/95 my-3 drop-shadow">
