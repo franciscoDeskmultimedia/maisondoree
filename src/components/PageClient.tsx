@@ -7,9 +7,10 @@ import { BlockRenderer } from './BlockRenderer'
 interface PageClientProps {
   page?: any
   defaultBlocks?: any[]
+  flavors?: any[]
 }
 
-export const PageClient: React.FC<PageClientProps> = ({ page, defaultBlocks = [] }) => {
+export const PageClient: React.FC<PageClientProps> = ({ page, defaultBlocks = [], flavors = [] }) => {
   const serverURL =
     typeof window !== 'undefined'
       ? window.location.origin
@@ -28,5 +29,5 @@ export const PageClient: React.FC<PageClientProps> = ({ page, defaultBlocks = []
       ? page.layout
       : defaultBlocks
 
-  return <BlockRenderer blocks={layout as any} />
+  return <BlockRenderer blocks={layout as any} flavors={flavors} />
 }

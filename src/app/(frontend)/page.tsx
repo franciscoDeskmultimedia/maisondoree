@@ -62,6 +62,7 @@ const defaultBlocks = [
 
 export default async function HomePage() {
   let homePage = null
+  let flavorsList: any[] = []
 
   try {
     const payload = await getPayload({ config: configPromise })
@@ -95,9 +96,19 @@ export default async function HomePage() {
         homePage = reFetched.docs[0]
       }
     }
+
+    const flavorsResult = await payload.find({
+      collection: 'flavors',
+      sort: 'order',
+      limit: 100,
+      depth: 2,
+    })
+    if (flavorsResult.docs && flavorsResult.docs.length > 0) {
+      flavorsList = flavorsResult.docs
+    }
   } catch (err) {
-    console.error('Failed to fetch home page:', err)
+    console.error('Failed to fetch home page data:', err)
   }
 
-  return <PageClient page={homePage} defaultBlocks={defaultBlocks} />
+  return <PageClient page={homePage} defaultBlocks={defaultBlocks} flavors={flavorsList} />
 }

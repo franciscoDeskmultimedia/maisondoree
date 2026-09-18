@@ -207,10 +207,25 @@ export interface Media {
 export interface Flavor {
   id: number;
   name: string;
+  /**
+   * Order in which flavors appear in the carousel (ascending)
+   */
   order?: number | null;
-  bottle750?: string | null;
-  bottle375?: string | null;
-  bottle160?: string | null;
+  bottle750?: (number | null) | Media;
+  /**
+   * Optional fallback URL if no media file is selected above.
+   */
+  bottle750Url?: string | null;
+  bottle375?: (number | null) | Media;
+  /**
+   * Optional fallback URL if no media file is selected above.
+   */
+  bottle375Url?: string | null;
+  bottle160?: (number | null) | Media;
+  /**
+   * Optional fallback URL if no media file is selected above.
+   */
+  bottle160Url?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -524,8 +539,11 @@ export interface FlavorsSelect<T extends boolean = true> {
   name?: T;
   order?: T;
   bottle750?: T;
+  bottle750Url?: T;
   bottle375?: T;
+  bottle375Url?: T;
   bottle160?: T;
+  bottle160Url?: T;
   updatedAt?: T;
   createdAt?: T;
 }

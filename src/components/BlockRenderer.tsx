@@ -14,9 +14,10 @@ interface BlockData {
 
 interface BlockRendererProps {
   blocks?: BlockData[]
+  flavors?: any[]
 }
 
-export const BlockRenderer: React.FC<BlockRendererProps> = ({ blocks }) => {
+export const BlockRenderer: React.FC<BlockRendererProps> = ({ blocks, flavors }) => {
   if (!blocks || blocks.length === 0) return null
 
   return (
@@ -26,7 +27,13 @@ export const BlockRenderer: React.FC<BlockRendererProps> = ({ blocks }) => {
           case 'heroBlock':
             return <HeroBlock key={block.id || index} {...block} />
           case 'saboresBlock':
-            return <SaboresCarouselBlock key={block.id || index} {...block} />
+            return (
+              <SaboresCarouselBlock
+                key={block.id || index}
+                flavors={block.flavors || flavors}
+                {...block}
+              />
+            )
           case 'twoColBlock':
           case 'saintManichoBlock':
             return <TwoColBlock key={block.id || index} {...block} />

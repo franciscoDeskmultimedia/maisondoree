@@ -2,12 +2,18 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
+import { getMediaUrl } from '@/lib/media'
 
 export interface FlavorItem {
+  id?: number | string
   name: string
-  bottle750: string
-  bottle375: string
-  bottle160: string
+  order?: number | null
+  bottle750?: any
+  bottle750Url?: string | null
+  bottle375?: any
+  bottle375Url?: string | null
+  bottle160?: any
+  bottle160Url?: string | null
 }
 
 interface SaboresCarouselBlockProps {
@@ -16,30 +22,43 @@ interface SaboresCarouselBlockProps {
   flavors?: FlavorItem[]
 }
 
+const resolveBottleUrl = (
+  mediaField: any,
+  fallbackUrl?: string | null,
+  defaultAsset: string = ''
+): string => {
+  return (
+    getMediaUrl(mediaField) ||
+    (typeof fallbackUrl === 'string' && fallbackUrl ? fallbackUrl : '') ||
+    (typeof mediaField === 'string' && mediaField ? mediaField : '') ||
+    defaultAsset
+  )
+}
+
 const defaultFlavors: FlavorItem[] = [
   {
     name: 'CRÉME CAPPUCCINO',
-    bottle750: '/images/bottle-creme.png',
-    bottle375: '/images/ticket-creme.png',
-    bottle160: '/images/mini-creme.png',
+    bottle750Url: '/images/bottle-creme.png',
+    bottle375Url: '/images/ticket-creme.png',
+    bottle160Url: '/images/mini-creme.png',
   },
   {
     name: 'BRISE MENTHOLÉE',
-    bottle750: '/images/bottle-brise.png',
-    bottle375: '/images/ticket-brise.png',
-    bottle160: '/images/mini-brise.png',
+    bottle750Url: '/images/bottle-brise.png',
+    bottle375Url: '/images/ticket-brise.png',
+    bottle160Url: '/images/mini-brise.png',
   },
   {
     name: 'VANILLE CLASSIQUE',
-    bottle750: '/images/bottle-vanille.png',
-    bottle375: '/images/ticket-vanille.png',
-    bottle160: '/images/mini-vanille.png',
+    bottle750Url: '/images/bottle-vanille.png',
+    bottle375Url: '/images/ticket-vanille.png',
+    bottle160Url: '/images/mini-vanille.png',
   },
   {
     name: 'NUIT DE CACAO',
-    bottle750: '/images/bottle-cacao.png',
-    bottle375: '/images/ticket-cacao.png',
-    bottle160: '/images/mini-cacao.png',
+    bottle750Url: '/images/bottle-cacao.png',
+    bottle375Url: '/images/ticket-cacao.png',
+    bottle160Url: '/images/mini-cacao.png',
   },
 ]
 
@@ -188,7 +207,7 @@ export const SaboresCarouselBlock: React.FC<SaboresCarouselBlockProps> = ({
               }`}
             >
               <Image
-                src={flavor.bottle750}
+                src={resolveBottleUrl(flavor.bottle750, flavor.bottle750Url, '/images/bottle-brise.png')}
                 alt={`${flavor.name} 750ml`}
                 width={220}
                 height={580}
@@ -197,7 +216,7 @@ export const SaboresCarouselBlock: React.FC<SaboresCarouselBlockProps> = ({
                 className="h-[clamp(260px,38vw,580px)] w-auto object-contain object-bottom filter drop-shadow-[0_26px_26px_rgba(0,0,0,0.5)]"
               />
               <Image
-                src={flavor.bottle375}
+                src={resolveBottleUrl(flavor.bottle375, flavor.bottle375Url, '/images/ticket-brise.png')}
                 alt={`${flavor.name} 375ml`}
                 width={180}
                 height={460}
@@ -206,7 +225,7 @@ export const SaboresCarouselBlock: React.FC<SaboresCarouselBlockProps> = ({
                 className="h-[clamp(200px,30vw,460px)] w-auto object-contain object-bottom filter drop-shadow-[0_20px_20px_rgba(0,0,0,0.45)]"
               />
               <Image
-                src={flavor.bottle160}
+                src={resolveBottleUrl(flavor.bottle160, flavor.bottle160Url, '/images/mini-brise.png')}
                 alt={`${flavor.name} 160ml`}
                 width={130}
                 height={340}
